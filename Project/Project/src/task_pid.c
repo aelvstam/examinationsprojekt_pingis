@@ -44,13 +44,6 @@ void task_pid(void *pvParameters)
 	//task loop runs infinitively 
 	while (1)
 	{
-		/* Used in order to be able to stop the regulation after
-		a completed run and await new data for next run*/
-		if(uart_receive_char() == 0)
-		{
-			pwm_set_duty_cycle(0);
-			matlab_configure();
-		}	
 		regulator();
 		vTaskDelayUntil( &xLastWakeTime, xTimeIncrement);
 	}
